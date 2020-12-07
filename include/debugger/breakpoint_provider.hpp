@@ -2,8 +2,8 @@
 
 namespace yae
 {
-    class Core
+    class IBreakpointProvider
     {
-    public:
+    
     };
 } // namespace yae

@@ -1,32 +1,18 @@
 #include <iostream>
 
 #include "core/register.hpp"
+#include "utils/stringutils.hpp"
 
 int main(int, char **)
 {
-    yae::core::Register<4> testReg("test");
+    yae::Register reg1("test register 1", 8, false);
+    yae::Register reg2("test register 2", 8, false);
 
-    testReg.setOnModifyWatchpoint([](yae::core::IRegister &r) {
-        std::cout << "new value = " << (size_t)r << std::endl;
-    });
-
-    int i = 0;
-    //std::cin >> i;
-    i = 1;
-    testReg = i;
-
-    testReg.rotateLeft();
-    std::cout << "(size_t)testReg.rotateLeft() = " << (size_t)testReg << std::endl;
-    testReg.rotateLeft();
-    std::cout << "(size_t)testReg.rotateLeft() = " << (size_t)testReg << std::endl;
-    testReg.rotateLeft();
-    std::cout << "(size_t)testReg.rotateLeft() = " << (size_t)testReg << std::endl;
-    testReg.rotateLeft();
-    std::cout << "(size_t)testReg.rotateLeft() = " << (size_t)testReg << std::endl;
-    testReg.rotateLeft();
-    std::cout << "(size_t)testReg.rotateLeft() = " << (size_t)testReg << std::endl;
-    testReg.rotateLeft();
-    std::cout << "(size_t)testReg.rotateLeft() = " << (size_t)testReg << std::endl;
+    for (size_t i = 0; i < 1000000000; i++)
+    {
+        reg2 = reg1;
+        reg1 = reg2 + i;
+    }
 
     return 0;
 }
